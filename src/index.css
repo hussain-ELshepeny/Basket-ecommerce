@@ -1,1 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Jersey+10&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #35afa0;
+  --color-secondary: #3e445a;
+  --color-buttonBackground: #233a95;
+  --color-red: #d51243;
+  --color-star: #ffcd00;
+
+  --font-body: "Dosis", sans-serif;
+  --font-logo: "Jersey 10", sans-serif;
+
+  --text-standard: 14px;
+}
+
+@utility section-container {
+  @apply container mx-auto px-[15px];
+}
