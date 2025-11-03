@@ -7,6 +7,7 @@ export default function App() {
         alt=""
       />
       <p>Hello Vite + React + TailwindCSS!</p>
+      <p>Hello Satla</p>
     </div>
   );
 }
