@@ -4,15 +4,18 @@ import AboutUs from "../pages/AboutUs";
 import Contact from "../pages/Contact";
 import Shop from "../pages/Shop";
 import Blog from "../pages/Blog";
+import Layout from "../layout/Layout";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/shop" element={<Shop />} />
-      <Route path="/about-us" element={<AboutUs />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/about-us" element={<AboutUs />} />
+      </Route>
     </Routes>
   );
 }
