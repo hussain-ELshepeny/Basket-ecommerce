@@ -1,4 +1,4 @@
-import Rating from "./Rating";
+import Rating from "../shared/Rating";
 import YellowProductButton from "./YellowProductButton";
 export default function SliderProductCard() {
   return (

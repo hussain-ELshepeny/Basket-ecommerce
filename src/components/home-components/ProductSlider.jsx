@@ -37,14 +37,6 @@ export default function ProductsSlider() {
       >
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
           <SwiperSlide key={item}>
-            {/* <div className="bg-white shadow p-4 rounded text-center">
-              <img
-                src="https://via.placeholder.com/150"
-                className="mx-auto mb-2"
-              />
-              <h3 className="font-semibold text-sm">Product {item}</h3>
-              <p className="text-primary font-bold">$19.99</p>
-            </div> */}
             <SliderProductCard />
           </SwiperSlide>
         ))}
