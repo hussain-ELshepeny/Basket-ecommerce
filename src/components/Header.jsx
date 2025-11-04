@@ -31,7 +31,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white sticky top-[52px] lg:top-[60px] z-30 shadow-md">
+    <header className="bg-white sticky top-0 z-30 shadow-md">
       <div className="section-container">
         {/* Top Header Section */}
         <div className="flex justify-between items-center gap-4 py-3 sm:py-4">

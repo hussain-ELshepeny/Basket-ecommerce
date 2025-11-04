@@ -1,6 +1,11 @@
+import BannerBox from "../components/home-components/BannerBox";
+import Offers from "../components/home-components/Offers";
+
 export default function Home() {
-  return <div>
-    <h1>Home</h1>
-    <h2>My edit</h2>
-  </div>;
+  return (
+    <main>
+      <Offers />
+      <BannerBox />
+    </main>
+  );
 }
