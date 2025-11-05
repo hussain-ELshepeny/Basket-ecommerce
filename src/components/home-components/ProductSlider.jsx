@@ -37,13 +37,13 @@ export default function ProductsSlider() {
       >
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
           <SwiperSlide key={item}>
-            <SliderProductCard />
+            <SliderProductCard color={"yellow"} />
           </SwiperSlide>
         ))}
       </Swiper>
 
       {/* Buttons */}
-      <button className="products-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/40 text-white p-2 rounded">
+      <button className="products-prev cursor-pointer absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/40 text-white p-2 rounded">
         <svg
           width="18"
           height="18"
@@ -58,7 +58,7 @@ export default function ProductsSlider() {
         </svg>
       </button>
 
-      <button className="products-next absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/40 text-white p-2 rounded">
+      <button className="products-next cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/40 text-white p-2 rounded">
         <svg
           width="18"
           height="18"

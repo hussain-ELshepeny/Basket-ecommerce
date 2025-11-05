@@ -42,7 +42,7 @@ export default function Offers() {
       <div className="bg-[url(/images/offer3.png)] bg-center bg-no-repeat bg-cover h-auto sm:col-span-2 relative">
         <div className="absolute top-0 left-0 w-full h-full bg-black/30 sm:bg-black/5 z-0"></div>
         <div className="sm:w-fit flex flex-col items-center sm:items-start sm:ml-auto py-12 px-5 sm:px-10 relative z-10">
-          <p className="text-[20px] sm:text-[24px] font-extralight text-white sm:text-[#202435] ">
+          <p className="text-[20px] sm:text-[24px] font-extralight text-white sm:text-heading ">
             Everything is so fresh
           </p>
           <p className=" text-white sm:text-secondary capitalize font-bold text-2xl sm:text-3xl py-1 ">
@@ -62,7 +62,7 @@ export default function Offers() {
       <div className="bg-[url(/images/offer4.png)] bg-center bg-no-repeat bg-cover h-auto sm:col-span-2 relative">
         <div className="absolute top-0 left-0 w-full h-full bg-black/30 sm:bg-black/5 z-0"></div>
         <div className="sm:w-fit flex flex-col items-center sm:items-start sm:ml-auto py-12 px-5 sm:px-10 relative z-10">
-          <p className="text-[24px] font-extralight text-white sm:text-[#202435] ">
+          <p className="text-[24px] font-extralight text-white sm:text-heading ">
             Big discount on
           </p>
           <p className=" text-white sm:text-secondary capitalize font-bold text-2xl sm:text-3xl py-1 ">

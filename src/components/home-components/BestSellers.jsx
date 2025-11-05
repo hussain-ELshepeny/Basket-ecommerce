@@ -4,12 +4,12 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 
 export default function BestSellers() {
   return (
-    <div className="section-container my-[var(--section-margin)]">
-        <SectionHeading
-          headingText={"Best Sellers"}
-          spanText={"Do not miss the current offers until the end of March."}
-        />
-        <ProductsSlider />
+    <div className="section-container my-(--section-margin)">
+      <SectionHeading
+        headingText={"Best Sellers"}
+        spanText={"Do not miss the current offers until the end of March."}
+      />
+      <ProductsSlider />
     </div>
   );
 }
