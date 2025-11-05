@@ -4,6 +4,9 @@ import BestSellers from "../components/home-components/BestSellers";
 import Category from "../components/home-components/Category";
 import Discount from "../components/home-components/discount";
 
+import Deals from "../components/home-components/Deals";
+import CategoryCollections from "../components/home-components/CategoryCollections";
+
 export default function Home() {
   return (
     <main>
@@ -23,6 +26,7 @@ export default function Home() {
         imageUrl={"/images/breakfast-and-dairy.png"}
         secHead={"Breakfast and Dairy"}
       />
+      <Deals />
     </main>
   );
 }
