@@ -258,44 +258,6 @@ export default function Header() {
           </div>
         </>
       )}
-
-      <style jsx>{`
-        @keyframes slide-down {
-          from {
-            opacity: 0;
-            transform: translateY(-15px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes slide-right {
-          from {
-            transform: translateX(-100%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-        .animate-slide-down {
-          animation: slide-down 0.3s ease-out;
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-        .animate-slide-right {
-          animation: slide-right 0.3s ease-out;
-        }
-      `}</style>
     </header>
   );
 }
