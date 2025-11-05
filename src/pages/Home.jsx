@@ -27,6 +27,7 @@ export default function Home() {
         secHead={"Breakfast and Dairy"}
       />
       <Deals />
+      <CategoryCollections />
     </main>
   );
 }
