@@ -1,4 +1,4 @@
-export default function DiscountCard({discountImgUrl,discountTitle, discountQuote}) {
+export default function DealsCard({discountImgUrl,discountTitle, discountQuote}) {
   return (
     <div className="bg-center bg-cover bg-no-repeat w-[100%] h-[218px] sm:block flex items-center rounded-lg" style={{backgroundImage: `${discountImgUrl}`}} >
       <div className="sm:py-[40px] sm:pl-[40px] pl-[20px] py-[20px]">
