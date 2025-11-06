@@ -1,3 +1,12 @@
-export default function Contact() {
-  return <div>Contact</div>;
+import React from 'react'
+
+function Contact() {
+  return (
+    <>
+    
+    
+    </>
+  )
 }
+
+export default Contact
