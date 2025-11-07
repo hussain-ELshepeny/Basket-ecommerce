@@ -59,3 +59,7 @@
 .animate-slide-right {
   animation: slide-right 0.3s ease-out;
 }
+
+html {
+  scroll-behavior: smooth;
+}
