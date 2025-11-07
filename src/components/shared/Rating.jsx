@@ -1,7 +1,7 @@
 export default function Rating({ rating = 0, reviews = 0 }) {
-  const filledStars = Math.floor(rating); // عدد النجوم الكاملة
-  const hasHalfStar = rating % 1 !== 0; // هل في نص نجمة
-  const emptyStars = 5 - Math.ceil(rating); // الباقي فاضي
+  const filledStars = Math.floor(rating); 
+  const hasHalfStar = rating % 1 !== 0; 
+  const emptyStars = 5 - Math.ceil(rating); 
 
   return (
     <div className="flex items-center gap-1 mb-[12px] md:mb-[14px]">
