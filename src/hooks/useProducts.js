@@ -1,0 +1,6 @@
+function getProducts () {
+
+}
+export {
+  getProducts
+}
