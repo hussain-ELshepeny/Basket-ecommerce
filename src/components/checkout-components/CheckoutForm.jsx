@@ -3,7 +3,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 export default function CheckoutForm() {
   return (
-    <div className="lg:w-[50%] w-full px-[50px] lg:border-r border-[#DEDEDE]">
+    <div className="lg:w-[50%] w-full md:px-[50px] px-[20px] lg:border-r border-[#DEDEDE]">
       <form>
 
         {/* Contact Part */}

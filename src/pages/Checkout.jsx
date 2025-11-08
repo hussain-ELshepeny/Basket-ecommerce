@@ -12,7 +12,7 @@ export default function Checkout() {
       </div>
       <main className="section-container flex flex-col mb-[120px] lg:flex-row">
       <CheckoutForm />
-      <div className="flex flex-col mt-[60px] px-[39px]"> 
+      <div className="flex flex-col mt-[60px] md:px-[39px] px-[20px]"> 
       <CheckoutCart />
       <OrderSummary />
       </div>
