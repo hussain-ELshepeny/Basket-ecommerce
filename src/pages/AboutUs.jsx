@@ -1,5 +1,3 @@
-import React from "react";
-
 import heroImage from "/images/about-header.jpg.png";
 import founderImage from "/images/about-people.jpg.png";
 

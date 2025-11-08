@@ -1,7 +1,10 @@
+import React from "react";
+
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   return (
+    
     <div
       className="bg-white min-h-screen"
       style={{ fontFamily: "var(--font-body)" }}

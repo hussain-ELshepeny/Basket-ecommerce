@@ -5,6 +5,7 @@ import Contact from "../pages/Contact";
 import Shop from "../pages/Shop";
 import Blog from "../pages/Blog";
 import Layout from "../layout/Layout";
+import Checkout from "../pages/Checkout";
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/about-us" element={<AboutUs />} />
       </Route>
+        <Route path="/checkout" element={<Checkout />} />
     </Routes>
   );
 }
