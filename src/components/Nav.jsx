@@ -1,12 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 import { FiChevronDown, FiPhone } from "react-icons/fi";
 import { MdSecurity } from "react-icons/md";
 import { AiOutlineHeart, AiOutlineSync } from "react-icons/ai";
+import { useHeaderActions } from "../hooks/header-actions";
 
 export default function Nav() {
-  const [languageOpen, setLanguageOpen] = useState(false);
-  const [currencyOpen, setCurrencyOpen] = useState(false);
+  // const [languageOpen, setLanguageOpen] = useState(false);
+  // const [currencyOpen, setCurrencyOpen] = useState(false);
+
+  const {
+    languageOpen,
+    setLanguageOpen,
+    currencyOpen,
+    setCurrencyOpen
+  } = useHeaderActions();
 
   return (
     <nav className="w-full">
