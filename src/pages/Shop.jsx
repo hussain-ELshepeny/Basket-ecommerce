@@ -164,14 +164,16 @@ export default function Shop() {
 
             {/* Pagination */}
             <div className="p-4">
-              {PaginationControls(
-                goToPrev,
-                goToNext,
-                currentPage,
-                paginationRange,
-                goToPage,
-                totalPages
-              )}
+              {
+                <PaginationControls
+                  goToPrev={goToPrev}
+                  goToNext={goToNext}
+                  currentPage={currentPage}
+                  paginationRange={paginationRange}
+                  goToPage={goToPage}
+                  totalPages={totalPages}
+                />
+              }
             </div>
           </div>
         </div>

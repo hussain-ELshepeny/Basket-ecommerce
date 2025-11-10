@@ -4,9 +4,8 @@ export default function PaginationControls({
   currentPage,
   paginationRange,
   goToPage,
-  totalPages
-}
-) {
+  totalPages,
+}) {
   return (
     <div className="flex items-center gap-6 mx-auto w-fit mt-10">
       <button
