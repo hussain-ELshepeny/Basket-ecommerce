@@ -3,23 +3,33 @@ import BlogBox from "../components/blog-components/BlogBox"
 import { usePagination } from "../hooks/usePagination"
 import { useFetchData } from "../hooks/useFetchData"
 import { useEffect, useState } from "react"
-import PaginationControls from "../components/shared/PaginationControl.jsx"
-import  login  from "/login";
+import PaginationControls from "../components/shared/PaginationControl"
+import login from "/login"
 
 export default function Blog() {
-
-  const {fetchData} = useFetchData();
+  const { fetchData } = useFetchData()
   const [blogs, setBlogs] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
-  async function name() {
-     await login()
-     const result = await fetchData("https://e-commarce-website-eight.vercel.app/api/v1/blog/get-all-blog", localStorage.getItem("accessToken"))
-     console.log(result.data)
-     setBlogs(result.data)
-  }    
-  
-  name()
-    }, []);
+    async function name() {
+      try {
+        // await login()
+        const result = await fetchData(
+          "https://e-commarce-website-eight.vercel.app/api/v1/product/get-bestseller",
+          localStorage.getItem("accessToken")
+        )
+        console.log(result.data)
+        setBlogs(result.data || [])
+      } catch (error) {
+        console.error("Failed to fetch data:", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    name()
+  }, [])
 
   const {
     currentPage,
@@ -35,20 +45,32 @@ export default function Blog() {
     itemsPerPage: 2,
   })
 
-  const currentBlogItems = blogs?.slice(startIndex, endIndex)
-    .map((blog) => (
-      <BlogBox
-        key={blog.id}
-        imageUrl={`blog-${blog.id}.png`}
-        title={blog.title}
-      />
+  const currentBlogItems = blogs
+    ?.slice(startIndex, endIndex)
+    .map((blog, i) => (
+      <BlogBox key={i} imageUrl={blog.Image.url} title={blog.title} />
     ))
 
   return (
     <div className="section-container py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
       <div className="sm:col-span-2">
-        {currentBlogItems}
-        {<PaginationControls
+        {isLoading ? (
+          <div className="loading-container flex flex-col items-center justify-center h-[65vh]">
+            <div className="w-12 h-12 border-6 border-t-6 border-gray-300 border-t-primary rounded-full animate-spin mb-3"></div>
+            <p className="loading-text text-heading font-bold text-lg">
+              fetching data...
+            </p>
+          </div>
+        ) : blogs && blogs.length > 0 ? (
+          currentBlogItems
+        ) : (
+          <div className="text-center h-[50vh] font-bold italic flex items-center justify-center">
+            <p className="text-red text-xl">No Data Found 📅</p>
+          </div>
+        )}
+
+        {
+          <PaginationControls
             goToPrev={goToPrev}
             goToNext={goToNext}
             currentPage={currentPage}
@@ -56,7 +78,7 @@ export default function Blog() {
             goToPage={goToPage}
             totalPages={totalPages}
           />
-}
+        }
       </div>
       <div className="posts">
         <h2 className="uppercase">Recent Posts</h2>
