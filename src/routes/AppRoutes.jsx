@@ -17,7 +17,7 @@ export default function AppRoutes() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<Checkout />} />
     </Routes>
   );
 }

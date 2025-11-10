@@ -60,11 +60,11 @@ export default function SideBar({ isOpen, onClose }) {
       <aside
         className={`
           fixed lg:static top-0 left-0 h-full lg:h-auto w-[320px] lg:w-auto
-          bg-white z-50 lg:z-0 
+          z-50 lg:z-0 
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
           overflow-y-auto lg:overflow-visible
-          shadow-2xl lg:shadow-none
+          
         `}
       >
         <div className="lg:space-y-6 p-5 lg:p-0">
@@ -117,7 +117,7 @@ export default function SideBar({ isOpen, onClose }) {
             />
 
             {/* Promotional Banner */}
-            <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+            <div className=" overflow-hidden  hover:shadow-xl transition-shadow duration-300 group">
               <div className="relative">
                 <img
                   src="/images/offer2.png"

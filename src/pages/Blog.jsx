@@ -1,15 +1,26 @@
 import RecentPost from "../components/blog-components/RecentPost"
 import BlogBox from "../components/blog-components/BlogBox"
 import { usePagination } from "../hooks/usePagination"
-import PaginationControls from "../components/PaginationControl"
-
-const allBlogPosts = [
-  { id: 1, title: "Post 1" },
-  { id: 2, title: "Post 2" },
-  { id: 3, title: "Post 3" },
-]
+import { useFetchData } from "../hooks/useFetchData"
+import { useEffect, useState } from "react"
+import PaginationControls from "../components/shared/PaginationControl.jsx"
+import  login  from "/login";
 
 export default function Blog() {
+
+  const {fetchData} = useFetchData();
+  const [blogs, setBlogs] = useState([])
+  useEffect(() => {
+  async function name() {
+     await login()
+     const result = await fetchData("https://e-commarce-website-eight.vercel.app/api/v1/blog/get-all-blog", localStorage.getItem("accessToken"))
+     console.log(result.data)
+     setBlogs(result.data)
+  }    
+  
+  name()
+    }, []);
+
   const {
     currentPage,
     totalPages,
@@ -20,12 +31,11 @@ export default function Blog() {
     goToPrev,
     goToPage,
   } = usePagination({
-    totalItems: allBlogPosts.length,
+    totalItems: blogs?.length,
     itemsPerPage: 2,
   })
 
-  const currentBlogItems = allBlogPosts
-    .slice(startIndex, endIndex)
+  const currentBlogItems = blogs?.slice(startIndex, endIndex)
     .map((blog) => (
       <BlogBox
         key={blog.id}
@@ -38,14 +48,15 @@ export default function Blog() {
     <div className="section-container py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
       <div className="sm:col-span-2">
         {currentBlogItems}
-        {PaginationControls(
-          goToPrev,
-          goToNext,
-          currentPage,
-          paginationRange,
-          goToPage,
-          totalPages
-        )}
+        {<PaginationControls
+            goToPrev={goToPrev}
+            goToNext={goToNext}
+            currentPage={currentPage}
+            paginationRange={paginationRange}
+            goToPage={goToPage}
+            totalPages={totalPages}
+          />
+}
       </div>
       <div className="posts">
         <h2 className="uppercase">Recent Posts</h2>

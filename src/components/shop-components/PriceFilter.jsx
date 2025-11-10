@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { FiDollarSign } from "react-icons/fi"
 
 export default function PriceFilter() {
