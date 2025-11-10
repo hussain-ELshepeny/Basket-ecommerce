@@ -11,7 +11,6 @@ export default async function login() {
               Phone: "01190972089",
               Password: "Omar@134@@@",
             }),
-
           }
         );
         const data = await result.json();
@@ -21,3 +20,4 @@ export default async function login() {
         console.log(error);
       }
     }
+    

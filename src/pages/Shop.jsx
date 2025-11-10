@@ -3,9 +3,8 @@ import { CiFilter } from "react-icons/ci"
 import { useState } from "react"
 import SliderProductCard from "../components/home-components/SliderProductCard"
 import { usePagination } from "../hooks/usePagination"
-import PaginationControls from "../components/PaginationControl"
-import { BsGrid3X3Gap, BsListUl } from "react-icons/bs"
-import { AiOutlineClose } from "react-icons/ai"
+import PaginationControls from "../components/shared/PaginationControl"
+import { BsGrid3X3Gap } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 
 export default function Shop() {
@@ -74,7 +73,7 @@ export default function Shop() {
           {/* Products Section */}
           <div className="space-y-6">
             {/* Toolbar */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5">
+            <div className=" rounded-2xl p-4 sm:p-5">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 {/* Left Side - Products Count & Filter Button */}
                 <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -164,7 +163,7 @@ export default function Shop() {
             </div>
 
             {/* Pagination */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+            <div className="p-4">
               {PaginationControls(
                 goToPrev,
                 goToNext,

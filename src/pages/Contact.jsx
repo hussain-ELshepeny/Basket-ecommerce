@@ -123,7 +123,6 @@ const Contact = () => {
                 Contact us for all your questions and opinions, or you can solve
                 your problems in a shorter time with our contact offices.
               </p>
-
               <form className="space-y-6">
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
