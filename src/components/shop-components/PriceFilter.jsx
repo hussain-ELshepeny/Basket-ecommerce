@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { FiDollarSign } from "react-icons/fi"
+import { useProducts } from "../../hooks/useProducts"
+import useFilterProducts from "../../hooks/useFilterProducts"
 
 export default function PriceFilter() {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 })

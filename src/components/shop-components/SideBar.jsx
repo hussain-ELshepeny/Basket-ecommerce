@@ -1,7 +1,7 @@
-import CategorySection from "./CategorySection";
-import PriceFilter from "./PriceFilter";
-import { AiOutlineClose } from "react-icons/ai";
-import { MdOutlineRefresh } from "react-icons/md";
+import CategorySection from "./CategorySection"
+import PriceFilter from "./PriceFilter"
+import { AiOutlineClose } from "react-icons/ai"
+import { MdOutlineRefresh } from "react-icons/md"
 
 export default function SideBar({ isOpen, onClose }) {
   const productCategories = [
@@ -14,20 +14,20 @@ export default function SideBar({ isOpen, onClose }) {
     { id: 7, name: "Grocery & Staples" },
     { id: 8, name: "Household Needs" },
     { id: 9, name: "Meats & Seafood" },
-  ];
+  ]
 
   const brandCategories = [
-    { name: "Frito Lay", count: 8 },
-    { name: "Quaker", count: 36 },
-    { name: "Cola", count: 1 },
-    { name: "Welch's", count: 1 },
-    { name: "Oreo", count: 16 },
-  ];
+    { id: 1, name: "Frito Lay", count: 8 },
+    { id: 2, name: "Quaker", count: 36 },
+    { id: 3, name: "Cola", count: 1 },
+    { id: 4, name: "Welch's", count: 1 },
+    { id: 5, name: "Oreo", count: 16 },
+  ]
 
   const availabilityOptions = [
-    { name: "In stock", count: 62 },
-    { name: "Out of stock", count: 0 },
-  ];
+    { id: 1, name: "In stock", count: 62 },
+    { id: 2, name: "Out of stock", count: 0 },
+  ]
 
   return (
     <>
@@ -50,7 +50,7 @@ export default function SideBar({ isOpen, onClose }) {
           
         `}
       >
-        <div className="lg:space-y-6 p-5 lg:p-0">
+        <div className="lg:space-y-6 p-5 lg:p-0 bg-white">
           {/* Mobile Header */}
           <div className="flex lg:hidden items-center justify-between pb-5 border-b border-gray-100 sticky top-0 bg-white z-10 -mx-5 px-5 -mt-5 pt-5">
             <div className="flex items-center gap-2">
@@ -105,7 +105,7 @@ export default function SideBar({ isOpen, onClose }) {
                   className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/300x400/10B981/ffffff?text=Special+Offer";
+                      "https://via.placeholder.com/300x400/10B981/ffffff?text=Special+Offer"
                   }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -147,5 +147,5 @@ export default function SideBar({ isOpen, onClose }) {
         }
       `}</style>
     </>
-  );
+  )
 }
