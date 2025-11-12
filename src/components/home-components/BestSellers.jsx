@@ -1,8 +1,16 @@
 import ProductsSlider from "./ProductSlider";
 import SectionHeading from "../shared/SectionHeading";
-import  login  from "../../../login";
+import { useEffect } from "react";
+import { login } from "../../services/login";
 export default function BestSellers() {
-  const GET_ALL_PRODUCTS_URL = "https://e-commarce-website-eight.vercel.app/api/v1/product/get-all-product"
+  useEffect(() => {
+    async function name() {
+      await login();
+    }
+    name();
+    console.log(localStorage.getItem("accessToken"));
+  }, []);
+
   return (
     <div className="section-container my-(--section-margin)">
       <SectionHeading

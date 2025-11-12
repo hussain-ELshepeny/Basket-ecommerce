@@ -18,6 +18,7 @@ export default function Home() {
         spanText={"The freshest green grocer products are waiting for you"}
         imageUrl={"/images/fruits-and-vegetables.png"}
         secHead={"Fruits and Vegetables"}
+        categoryId={"690f254e91cd3ea44741610f"}
       />
       <Discount />
       <Category
@@ -25,6 +26,7 @@ export default function Home() {
         spanText={"Do not miss the current offers until the end of month."}
         imageUrl={"/images/breakfast-and-dairy.png"}
         secHead={"Breakfast and Dairy"}
+        categoryId={"690f251391cd3ea44741610b"}
       />
       <Deals />
       <CategoryCollections />

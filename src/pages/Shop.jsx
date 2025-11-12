@@ -1,24 +1,32 @@
-import SideBar from "../components/shop-components/SideBar"
-import { CiFilter } from "react-icons/ci"
-import { useState } from "react"
-import SliderProductCard from "../components/home-components/SliderProductCard"
-import { usePagination } from "../hooks/usePagination"
-import PaginationControls from "../components/shared/PaginationControl"
-import { BsGrid3X3Gap } from "react-icons/bs"
-import { FiChevronDown } from "react-icons/fi"
-
+import SideBar from "../components/shop-components/SideBar";
+import { CiFilter } from "react-icons/ci";
+import { useState } from "react";
+import SliderProductCard from "../components/home-components/SliderProductCard";
+import { usePagination } from "../hooks/usePagination";
+import PaginationControls from "../components/shared/PaginationControl";
+import { BsGrid3X3Gap } from "react-icons/bs";
+import { FiChevronDown } from "react-icons/fi";
+import { useProducts } from "../hooks/useProducts";
+import { useCategory } from "../hooks/useCategory";
+import useFilterProducts from "../hooks/useFilterProducts";
 export default function Shop() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [viewMode, setViewMode] = useState("grid") // 'grid' or 'list'
-  const [sortBy, setSortBy] = useState("default")
-  const [sortDropdownOpen, setSortDropdownOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
+  const [sortBy, setSortBy] = useState("default");
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
-  const arr = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 1, 2,
-    3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ]
+  const { allProducts } = useProducts();
+  const { data: productsData } = allProducts;
+  const products = productsData?.products || []; //question here
+  console.log(productsData); //undefined
 
-  const sortOptions = [{ value: "default", label: "Default Sorting" }]
+  // const { allCategory } = useCategory();
+  // const { data: categories } = allCategory;
+  // const categories = productsData?.products || []; //question here
+
+  const { displayedProducts } = useFilterProducts(products);
+
+  const sortOptions = [{ value: "default", label: "Default Sorting" }];
 
   const {
     currentPage,
@@ -30,13 +38,15 @@ export default function Shop() {
     goToPrev,
     goToPage,
   } = usePagination({
-    totalItems: arr.length,
+    totalItems: products.length,
     itemsPerPage: 12,
-  })
+  });
 
-  const currentProductItems = arr
+  const currentProductItems = displayedProducts
     .slice(startIndex, endIndex)
-    .map((product, i) => <SliderProductCard key={i} color={"yellow"} />)
+    .map((product, i) => (
+      <SliderProductCard key={i} color={"yellow"} product={product} />
+    ));
 
   return (
     <section className="min-h-screen bg-gray-50/50">
@@ -87,7 +97,7 @@ export default function Shop() {
 
                   <div className="text-gray-600 font-medium text-standard">
                     <span className="text-gray-900 font-bold">
-                      {arr.length}
+                      {products.length}
                     </span>{" "}
                     Products Found
                   </div>
@@ -118,8 +128,8 @@ export default function Shop() {
                           <button
                             key={option.value}
                             onClick={() => {
-                              setSortBy(option.value)
-                              setSortDropdownOpen(false)
+                              setSortBy(option.value);
+                              setSortDropdownOpen(false);
                             }}
                             className={`w-full px-4 py-2.5 text-left hover:bg-primary/5 transition-colors text-sm ${
                               sortBy === option.value
@@ -230,5 +240,5 @@ export default function Shop() {
         }
       `}</style>
     </section>
-  )
+  );
 }

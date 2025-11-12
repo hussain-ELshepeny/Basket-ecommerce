@@ -1,8 +1,40 @@
 import { Link } from "react-router-dom";
 import SectionHeading from "../shared/SectionHeading";
 import SliderProductCard from "./SliderProductCard";
+// import { useFetchData } from "../../hooks/useFetchData";
+// import login from "/login";
+export default function Category({
+  headingText,
+  spanText,
+  imageUrl,
+  secHead,
+  CategoryId,
+}) {
+  const GET_Products_By_Category = `https://e-commarce-website-eight.vercel.app/api/v1/product/category/${CategoryId}`;
+  // const { getData } = useFetchData()
 
-export default function Category({ headingText, spanText, imageUrl, secHead }) {
+  // const [isLoading, setIsLoading] = useState(false)
+  // const [categoryProducts, setCategoryProducts] = useState([])
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       await login()
+  //       const result = await getData(
+  //        "https://e-commarce-website-eight.vercel.app/api/v1/product/category/68eac24ab7241c56308e0d12",
+  //         localStorage.getItem("accessToken")
+  //       )
+  //       console.log(result)
+  //       setCategoryProducts(result.data || [])
+  //     } catch (error) {
+  //       console.error("Failed to fetch data:", error)
+  //     } finally {
+  //       setIsLoading(false)
+  //     }
+  //   }
+
+  //   fetchData()
+  // }, [])
+
   return (
     <section className="section-container">
       <SectionHeading headingText={headingText} spanText={spanText} />
@@ -43,8 +75,8 @@ export default function Category({ headingText, spanText, imageUrl, secHead }) {
             <li className="text-standard text-[#3E445A]">Meats & Seafood</li>
           </ul>
         </div>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-          <SliderProductCard key={item} />
+        {[1, 2, 3].map((product, index) => (
+          <SliderProductCard key={index} />
         ))}
       </div>
     </section>
