@@ -1,10 +1,10 @@
-export default function Rating({ rating = 0, reviews = 0 }) {
-  const filledStars = Math.floor(rating); 
-  const hasHalfStar = rating % 1 !== 0; 
-  const emptyStars = 5 - Math.ceil(rating); 
+export default function Rating({ reviews = 0 }) {
+  const filledStars = Math.ceil(Math.random() * 5)
+  const hasHalfStar = filledStars % 1 !== 0
+  const emptyStars = 5 - Math.ceil(filledStars)
 
   return (
-    <div className="flex items-center gap-1 mb-[12px] md:mb-[14px]">
+    <div className="flex items-center gap-1 mb-3 md:mb-3.5">
       {/* Stars Filled */}
       {Array.from({ length: filledStars }).map((_, i) => (
         <span key={`f-${i}`} className="text-[#FFCD00] text-[16px]">
@@ -30,9 +30,9 @@ export default function Rating({ rating = 0, reviews = 0 }) {
       ))}
 
       {/* Reviews text */}
-      <span className="text-[14px] text-gray-500 ml-1">
+      <span className="text-standard text-gray-500 ml-1">
         {reviews} review{reviews !== 1 && "s"}
       </span>
     </div>
-  );
+  )
 }

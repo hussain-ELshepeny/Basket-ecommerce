@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { useProducts } from "../../hooks/useProducts";
-import useFilterProducts from "../../hooks/useFilterProducts";
+import { useState } from "react"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
+import { useProducts } from "../../hooks/useProducts"
+import useFilterProducts from "../../hooks/useFilterProducts"
 
 export default function CategorySection({ heading, items, type }) {
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [showAll, setShowAll] = useState(false);
-  const displayItems = showAll ? items : items.slice(0, 5);
-  const hasMore = items.length > 5;
+  const [isExpanded, setIsExpanded] = useState(true)
+  const [selectedItems, setSelectedItems] = useState([])
+  const [showAll, setShowAll] = useState(false)
+  const displayItems = showAll ? items : items.slice(0, 5)
+  const hasMore = items.length > 5
 
-  const { allProducts } = useProducts();
-  const { data: productsData } = allProducts;
-  const products = productsData?.products || [];
-  const { handleFilter, filterValue } = useFilterProducts(products);
+  const { allProducts } = useProducts()
+  const { data: productsData } = allProducts
+  const products = productsData?.products || []
+  const { handleFilter, filterValue } = useFilterProducts(products)
 
   return (
     <div className="bg-white lg:bg-transparent rounded-xl lg:rounded-none border-b border-gray-100 pb-6">
@@ -51,19 +51,17 @@ export default function CategorySection({ heading, items, type }) {
                   className="peer sr-only"
                 />
                 <div className="w-5 h-5 border-2 border-gray-300 rounded peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
-                  {selectedItems.includes(item.name) && (
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="3"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  )}
+                  <svg
+                    className="w-3 h-3 text-white"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
               </div>
 
@@ -115,5 +113,5 @@ export default function CategorySection({ heading, items, type }) {
         )}
       </div>
     </div>
-  );
+  )
 }

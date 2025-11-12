@@ -1,32 +1,33 @@
-import SideBar from "../components/shop-components/SideBar";
-import { CiFilter } from "react-icons/ci";
-import { useState } from "react";
-import SliderProductCard from "../components/home-components/SliderProductCard";
-import { usePagination } from "../hooks/usePagination";
-import PaginationControls from "../components/shared/PaginationControl";
-import { BsGrid3X3Gap } from "react-icons/bs";
-import { FiChevronDown } from "react-icons/fi";
-import { useProducts } from "../hooks/useProducts";
-import { useCategory } from "../hooks/useCategory";
-import useFilterProducts from "../hooks/useFilterProducts";
-export default function Shop() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
-  const [sortBy, setSortBy] = useState("default");
-  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+import SideBar from "../components/shop-components/SideBar"
+import { CiFilter } from "react-icons/ci"
+import { useState } from "react"
+import SliderProductCard from "../components/home-components/SliderProductCard"
+import { usePagination } from "../hooks/usePagination"
+import PaginationControls from "../components/shared/PaginationControl"
+import { BsGrid3X3Gap } from "react-icons/bs"
+import { FiChevronDown } from "react-icons/fi"
+import { useProducts } from "../hooks/useProducts"
+import { useCategory } from "../hooks/useCategory"
+import useFilterProducts from "../hooks/useFilterProducts"
 
-  const { allProducts } = useProducts();
-  const { data: productsData } = allProducts;
-  const products = productsData?.products || []; //question here
-  console.log(productsData); //undefined
+export default function Shop() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [viewMode, setViewMode] = useState("grid") // 'grid' or 'list'
+  const [sortBy, setSortBy] = useState("default")
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false)
+
+  const { allProducts } = useProducts()
+  const { data: productsData, isPending } = allProducts
+  const products = productsData?.products || [] //question here
+  console.log(productsData) //undefined
 
   // const { allCategory } = useCategory();
   // const { data: categories } = allCategory;
   // const categories = productsData?.products || []; //question here
 
-  const { displayedProducts } = useFilterProducts(products);
+  const { displayedProducts } = useFilterProducts(products)
 
-  const sortOptions = [{ value: "default", label: "Default Sorting" }];
+  const sortOptions = [{ value: "default", label: "Default Sorting" }]
 
   const {
     currentPage,
@@ -40,13 +41,13 @@ export default function Shop() {
   } = usePagination({
     totalItems: products.length,
     itemsPerPage: 12,
-  });
+  })
 
   const currentProductItems = displayedProducts
     .slice(startIndex, endIndex)
     .map((product, i) => (
       <SliderProductCard key={i} color={"yellow"} product={product} />
-    ));
+    ))
 
   return (
     <section className="min-h-screen bg-gray-50/50">
@@ -128,8 +129,8 @@ export default function Shop() {
                           <button
                             key={option.value}
                             onClick={() => {
-                              setSortBy(option.value);
-                              setSortDropdownOpen(false);
+                              setSortBy(option.value)
+                              setSortDropdownOpen(false)
                             }}
                             className={`w-full px-4 py-2.5 text-left hover:bg-primary/5 transition-colors text-sm ${
                               sortBy === option.value
@@ -162,15 +163,28 @@ export default function Shop() {
             </div>
 
             {/* Products Grid */}
-            <div
-              className={`grid gap-4 sm:gap-5 ${
-                viewMode === "grid"
-                  ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                  : "grid-cols-1"
-              }`}
-            >
-              {currentProductItems}
-            </div>
+            {isPending ? (
+              <div className="loading-container flex flex-col items-center justify-center h-[65vh]">
+                <div className="w-12 h-12 border-6 border-t-6 border-gray-300 border-t-primary rounded-full animate-spin mb-3"></div>
+                <p className="loading-text text-heading font-bold text-lg">
+                  fetching data...
+                </p>
+              </div>
+            ) : products && products.length > 0 ? (
+              <div
+                className={`grid gap-4 sm:gap-5 ${
+                  viewMode === "grid"
+                    ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                    : "grid-cols-1"
+                }`}
+              >
+                {currentProductItems}
+              </div>
+            ) : (
+              <div className="text-center h-[50vh] font-bold italic flex items-center justify-center">
+                <p className="text-red text-xl">No Data Found 📅</p>
+              </div>
+            )}
 
             {/* Pagination */}
             <div className="p-4">
@@ -240,5 +254,5 @@ export default function Shop() {
         }
       `}</style>
     </section>
-  );
+  )
 }
