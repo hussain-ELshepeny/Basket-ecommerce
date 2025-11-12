@@ -1,21 +1,19 @@
-import { useState } from "react"
-import { FiChevronDown, FiChevronUp } from "react-icons/fi"
+import { useState } from "react";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { useProducts } from "../../hooks/useProducts";
+import useFilterProducts from "../../hooks/useFilterProducts";
 
 export default function CategorySection({ heading, items, type }) {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [selectedItems, setSelectedItems] = useState([])
-  const [showAll, setShowAll] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const displayItems = showAll ? items : items.slice(0, 5);
+  const hasMore = items.length > 5;
 
-  const displayItems = showAll ? items : items.slice(0, 5)
-  const hasMore = items.length > 5
-
-  const handleCheckboxChange = (itemName) => {
-    setSelectedItems((prev) =>
-      prev.includes(itemName)
-        ? prev.filter((item) => item !== itemName)
-        : [...prev, itemName]
-    )
-  }
+  const { allProducts } = useProducts();
+  const { data: productsData } = allProducts;
+  const products = productsData?.products || [];
+  const { handleFilter, filterValue } = useFilterProducts(products);
 
   return (
     <div className="bg-white lg:bg-transparent rounded-xl lg:rounded-none border-b border-gray-100 pb-6">
@@ -48,8 +46,8 @@ export default function CategorySection({ heading, items, type }) {
               <div className="relative">
                 <input
                   type="checkbox"
-                  checked={selectedItems.includes(item.name)}
-                  onChange={() => handleCheckboxChange(item.name)}
+                  checked={filterValue.includes(item.id)}
+                  onChange={() => handleFilter(item.id)}
                   className="peer sr-only"
                 />
                 <div className="w-5 h-5 border-2 border-gray-300 rounded peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
@@ -117,5 +115,5 @@ export default function CategorySection({ heading, items, type }) {
         )}
       </div>
     </div>
-  )
+  );
 }

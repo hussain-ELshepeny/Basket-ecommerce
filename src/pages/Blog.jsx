@@ -1,35 +1,14 @@
-import RecentPost from "../components/blog-components/RecentPost"
-import BlogBox from "../components/blog-components/BlogBox"
-import { usePagination } from "../hooks/usePagination"
-import { useFetchData } from "../hooks/useFetchData"
-import { useEffect, useState } from "react"
-import PaginationControls from "../components/shared/PaginationControl"
-import login from "/login"
+import RecentPost from "../components/blog-components/RecentPost";
+import BlogBox from "../components/blog-components/BlogBox";
+import { usePagination } from "../hooks/usePagination";
+import PaginationControls from "../components/shared/PaginationControl";
+import { useBlog } from "../hooks/useBlog";
 
 export default function Blog() {
-  const { fetchData } = useFetchData()
-  const [blogs, setBlogs] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    async function name() {
-      try {
-        // await login()
-        const result = await fetchData(
-          "https://e-commarce-website-eight.vercel.app/api/v1/product/get-bestseller",
-          localStorage.getItem("accessToken")
-        )
-        console.log(result.data)
-        setBlogs(result.data || [])
-      } catch (error) {
-        console.error("Failed to fetch data:", error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    name()
-  }, [])
+  const { allBlogs } = useBlog();
+  const { data: blogsData, isPending } = allBlogs;
+  const blogs = blogsData?.data || []; //question here
+  console.log(blogs); //undefined
 
   const {
     currentPage,
@@ -43,18 +22,18 @@ export default function Blog() {
   } = usePagination({
     totalItems: blogs?.length,
     itemsPerPage: 2,
-  })
+  });
 
   const currentBlogItems = blogs
     ?.slice(startIndex, endIndex)
     .map((blog, i) => (
       <BlogBox key={i} imageUrl={blog.Image.url} title={blog.title} />
-    ))
+    ));
 
   return (
     <div className="section-container py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
       <div className="sm:col-span-2">
-        {isLoading ? (
+        {isPending ? (
           <div className="loading-container flex flex-col items-center justify-center h-[65vh]">
             <div className="w-12 h-12 border-6 border-t-6 border-gray-300 border-t-primary rounded-full animate-spin mb-3"></div>
             <p className="loading-text text-heading font-bold text-lg">
@@ -137,5 +116,5 @@ export default function Blog() {
         </div>
       </div>
     </div>
-  )
+  );
 }

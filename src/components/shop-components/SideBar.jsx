@@ -1,28 +1,20 @@
-import CategorySection from "./CategorySection"
-import PriceFilter from "./PriceFilter"
-import { AiOutlineClose } from "react-icons/ai"
-import { useState } from "react"
-import { MdOutlineRefresh } from "react-icons/md"
+import CategorySection from "./CategorySection";
+import PriceFilter from "./PriceFilter";
+import { AiOutlineClose } from "react-icons/ai";
+import { MdOutlineRefresh } from "react-icons/md";
 
 export default function SideBar({ isOpen, onClose }) {
-  const [filters, setFilters] = useState({
-    categories: [],
-    brands: [],
-    priceRange: { min: 0, max: 1000 },
-    availability: [],
-  })
-
   const productCategories = [
-    { name: "Beverages" },
-    { name: "Biscuits & Snacks" },
-    { name: "Breads & Bakery" },
-    { name: "Breakfast & Dairy" },
-    { name: "Frozen Foods" },
-    { name: "Fruits & Vegetables" },
-    { name: "Grocery & Staples" },
-    { name: "Household Needs" },
-    { name: "Meats & Seafood" },
-  ]
+    { id: 1, name: "Beverages" },
+    { id: 2, name: "Biscuits & Snacks" },
+    { id: 3, name: "Breads & Bakery" },
+    { id: 4, name: "Breakfast & Dairy" },
+    { id: 5, name: "Frozen Foods" },
+    { id: 6, name: "Fruits & Vegetables" },
+    { id: 7, name: "Grocery & Staples" },
+    { id: 8, name: "Household Needs" },
+    { id: 9, name: "Meats & Seafood" },
+  ];
 
   const brandCategories = [
     { name: "Frito Lay", count: 8 },
@@ -30,21 +22,12 @@ export default function SideBar({ isOpen, onClose }) {
     { name: "Cola", count: 1 },
     { name: "Welch's", count: 1 },
     { name: "Oreo", count: 16 },
-  ]
+  ];
 
   const availabilityOptions = [
     { name: "In stock", count: 62 },
     { name: "Out of stock", count: 0 },
-  ]
-
-  const handleResetFilters = () => {
-    setFilters({
-      categories: [],
-      brands: [],
-      priceRange: { min: 0, max: 1000 },
-      availability: [],
-    })
-  }
+  ];
 
   return (
     <>
@@ -85,10 +68,7 @@ export default function SideBar({ isOpen, onClose }) {
           {/* Reset Filters Button */}
           <div className="hidden lg:flex items-center justify-between pb-4 border-b border-gray-100">
             <h3 className="text-lg font-bold text-gray-900">Filters</h3>
-            <button
-              onClick={handleResetFilters}
-              className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-            >
+            <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium">
               <MdOutlineRefresh className="text-lg" />
               Reset
             </button>
@@ -125,7 +105,7 @@ export default function SideBar({ isOpen, onClose }) {
                   className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/300x400/10B981/ffffff?text=Special+Offer"
+                      "https://via.placeholder.com/300x400/10B981/ffffff?text=Special+Offer";
                   }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -137,7 +117,7 @@ export default function SideBar({ isOpen, onClose }) {
           <div className="lg:hidden sticky bottom-0 bg-white border-t border-gray-100 -mx-5 px-5 py-4 mt-6">
             <div className="flex gap-3">
               <button
-                onClick={handleResetFilters}
+                // onClick={handleResetFilters}
                 className="flex-1 px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-all"
               >
                 Reset
@@ -167,5 +147,5 @@ export default function SideBar({ isOpen, onClose }) {
         }
       `}</style>
     </>
-  )
+  );
 }
