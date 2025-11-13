@@ -11,12 +11,14 @@ export async function login() {
         }),
         credentials: "include",
       }
-    );
+    )
 
-    const data = await res.json();
-    localStorage.setItem("accessToken", data.AccessToken);
-    console.log(" Logged in successfully");
+    const data = await res.json()
+    // console.log(data.user.id)
+    localStorage.setItem("accessToken", data.AccessToken)
+    localStorage.setItem("userId", data.user?.id)
+    console.log(" Logged in successfully")
   } catch (err) {
-    console.error(" Login failed:", err);
+    console.error(" Login failed:", err)
   }
 }

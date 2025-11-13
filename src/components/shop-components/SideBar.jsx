@@ -184,7 +184,7 @@ export default function SideBar({
             <h3 className="text-lg font-bold text-gray-900">Filters</h3>
             <button
               onClick={() => handleResetAll()}
-              className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+              className="flex items-center cursor-pointer gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
             >
               <MdOutlineRefresh className="text-lg" />
               Reset

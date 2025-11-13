@@ -90,13 +90,13 @@ export default function PriceFilter({
         <div className="flex gap-2 pt-2">
           <button
             onClick={handleResetPrice}
-            className="flex-1 px-4 py-2 border-2 border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-all font-medium text-sm"
+            className="flex-1 cursor-pointer px-4 py-2 border-2 border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-all font-medium text-sm"
           >
             Reset
           </button>
           <button
             onClick={handleApply}
-            className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all font-medium text-sm shadow-lg shadow-primary/20"
+            className="flex-1 cursor-pointer px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all font-medium text-sm shadow-lg shadow-primary/20"
           >
             Apply
           </button>
