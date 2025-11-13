@@ -26,6 +26,10 @@
   @apply container mx-auto px-[15px];
 }
 
+@utility social-media {
+  @apply text-white flex items-center gap-6 py-2 px-4 rounded-sm sm:w-[270px] h-[42px];
+}
+
 @keyframes slide-down {
   from {
     opacity: 0;

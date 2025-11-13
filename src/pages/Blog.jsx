@@ -3,7 +3,8 @@ import BlogBox from "../components/blog-components/BlogBox";
 import { usePagination } from "../hooks/usePagination";
 import PaginationControls from "../components/shared/PaginationControl";
 import { useBlog } from "../hooks/useBlog";
-
+import Tags from "../components/blog-components/Tags";
+import SocialMedia from "../components/blog-components/SocialMedia";
 export default function Blog() {
   const { allBlogs } = useBlog();
   const { data: blogsData, isPending } = allBlogs;
@@ -72,28 +73,31 @@ export default function Blog() {
           ))}
         </div>
 
-        <h2 className="uppercase mb-4">Social Media</h2>
+        <h2 className="uppercase mb-4">Social </h2>
         <div className="flex flex-col gap-2">
-          <div className="bg-[#3B5998] text-white flex items-center gap-6 py-2 px-4 rounded-lg">
-            <img src="/images/face.png" alt="" />{" "}
-            <span className="uppercase">Facebook</span>{" "}
-          </div>
-          <div className="bg-[#CC2366] text-white flex items-center gap-6 py-2 px-4 rounded-lg">
-            <img src="/images/insta.png" alt="" />{" "}
-            <span className="uppercase">Instagram</span>{" "}
-          </div>
-          <div className="bg-[#1DA1F2] text-white flex items-center gap-6 py-2 px-4 rounded-lg">
-            <img src="/images/twitter.png" alt="" />{" "}
-            <span className="uppercase">Twitter</span>{" "}
-          </div>
-          <div className="bg-[#FF4500] text-white flex items-center gap-6 py-2 px-4 rounded-lg">
-            <img src="/images/reddit.png" alt="" />{" "}
-            <span className="uppercase">reddit</span>{" "}
-          </div>
-          <div className="bg-[#E60023] text-white flex items-center gap-6 py-2 px-4 rounded-lg">
-            <img src="/images/pint.png" alt="" />{" "}
-            <span className="uppercase">pinterest</span>{" "}
-          </div>
+          <SocialMedia color="3B5998" imgSrc="/images/face.png" alt="facebook">
+            Facebook
+          </SocialMedia>
+          <SocialMedia
+            color="CC2366"
+            imgSrc="/images/insta.png"
+            alt="instagram"
+          >
+            Instagram
+          </SocialMedia>
+          <SocialMedia
+            color="1DA1F2"
+            imgSrc="/images/twitter.png"
+            alt="twitter"
+          >
+            Twitter
+          </SocialMedia>
+          <SocialMedia color="FF4500" imgSrc="/images/reddit.png" alt="reddit">
+            Reddit
+          </SocialMedia>
+          <SocialMedia color="E60023" imgSrc="/images/pint.png" alt="pinterest">
+            Pinterest
+          </SocialMedia>
         </div>
 
         <h2 className="uppercase mt-10 mb-4">Widget Banner</h2>
@@ -104,14 +108,14 @@ export default function Blog() {
         <h2 className="uppercase mt-10 mb-4">Tags</h2>
         <div>
           <ul className="flex gap-4 flex-wrap">
-            <li className="p-2 border border-gray-300">ecommerce</li>
-            <li className="p-2 border border-gray-300">food</li>
-            <li className="p-2 border border-gray-300">grocery</li>
-            <li className="p-2 border border-gray-300">klbtheme</li>
-            <li className="p-2 border border-gray-300">organic</li>
-            <li className="p-2 border border-gray-300">shop</li>
-            <li className="p-2 border border-gray-300">shopify</li>
-            <li className="p-2 border border-gray-300">store</li>
+            <Tags>ecommerce</Tags>
+            <Tags>food</Tags>
+            <Tags>grocery</Tags>
+            <Tags>organic</Tags>
+            <Tags>shop</Tags>
+            <Tags>shopify</Tags>
+            <Tags>store</Tags>
+            <Tags>ecommerce</Tags>
           </ul>
         </div>
       </div>

@@ -1,19 +1,25 @@
-import { useState } from "react"
-import { FiChevronDown, FiChevronUp } from "react-icons/fi"
-import { useProducts } from "../../hooks/useProducts"
-import useFilterProducts from "../../hooks/useFilterProducts"
+import { useState } from "react";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { useProducts } from "../../hooks/useProducts";
+import useFilterProducts from "../../hooks/useFilterProducts";
 
-export default function CategorySection({ heading, items, type }) {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [selectedItems, setSelectedItems] = useState([])
-  const [showAll, setShowAll] = useState(false)
-  const displayItems = showAll ? items : items.slice(0, 5)
-  const hasMore = items.length > 5
+export default function CategorySection({
+  heading,
+  items,
+  type,
+  handleFilter,
+  filterValue,
+}) {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const displayItems = showAll ? items : items.slice(0, 5);
+  const hasMore = items.length > 5;
 
-  const { allProducts } = useProducts()
-  const { data: productsData } = allProducts
-  const products = productsData?.products || []
-  const { handleFilter, filterValue } = useFilterProducts(products)
+  const { allProducts } = useProducts();
+  const { data: productsData } = allProducts;
+  const products = productsData?.products || [];
+  // const { handleFilter, filterValue } = useFilterProducts(products);
 
   return (
     <div className="bg-white lg:bg-transparent rounded-xl lg:rounded-none border-b border-gray-100 pb-6">
@@ -46,7 +52,7 @@ export default function CategorySection({ heading, items, type }) {
               <div className="relative">
                 <input
                   type="checkbox"
-                  checked={filterValue.includes(item.id)}
+                  checked={filterValue?.includes(item.id)}
                   onChange={() => handleFilter(item.id)}
                   className="peer sr-only"
                 />
@@ -113,5 +119,5 @@ export default function CategorySection({ heading, items, type }) {
         )}
       </div>
     </div>
-  )
+  );
 }

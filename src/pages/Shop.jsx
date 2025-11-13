@@ -19,13 +19,23 @@ export default function Shop() {
   const { allProducts } = useProducts()
   const { data: productsData, isPending } = allProducts
   const products = productsData?.products || [] //question here
-  console.log(productsData) //undefined
+  console.log(productsData)
 
   // const { allCategory } = useCategory();
   // const { data: categories } = allCategory;
   // const categories = productsData?.products || []; //question here
+  // console.log(categories);
 
-  const { displayedProducts } = useFilterProducts(products)
+  const {
+    displayedProducts,
+    handleFilter,
+    filterValue,
+    handleApply,
+    handleResetPrice,
+    setTempRange,
+    tempRange,
+    handleResetAll,
+  } = useFilterProducts(products)
 
   const sortOptions = [{ value: "default", label: "Default Sorting" }]
 
@@ -79,6 +89,13 @@ export default function Shop() {
           <SideBar
             isOpen={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
+            handleFilter={handleFilter}
+            filterValue={filterValue}
+            handleApply={handleApply}
+            setTempRange={setTempRange}
+            tempRange={tempRange}
+            handleResetAll={handleResetAll}
+            handleResetPrice={handleResetPrice}
           />
 
           {/* Products Section */}
@@ -98,7 +115,7 @@ export default function Shop() {
 
                   <div className="text-gray-600 font-medium text-standard">
                     <span className="text-gray-900 font-bold">
-                      {products.length}
+                      {displayedProducts.length}
                     </span>{" "}
                     Products Found
                   </div>
