@@ -1,6 +1,12 @@
+import { useCart } from "../../hooks/useCart"
 import CheckoutProduct from "./CheckoutProduct"
 
 export default function CheckoutCart() {
+  const { getCart } = useCart()
+  const { data: cartProductsData, isPending } = getCart
+  // const cartProducts = cartProductsData?.cart || []
+  console.log(cartProductsData)
+
   const cart = [
     {
       img: "/images/product-image.png",

@@ -19,7 +19,7 @@ export default function SliderProductCard({ color, product }) {
         <span className="font-body font-semibold block mx-auto text-[18px] text-red leading-[27px] tracking-[-0.1px] align-middle">
           ${product?.Price}
         </span>
-        <YellowProductButton color={color} />
+        <YellowProductButton color={color} productId={product?._id} />
       </div>
     </div>
   )

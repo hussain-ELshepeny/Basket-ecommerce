@@ -49,7 +49,7 @@ export default function Shop() {
     goToPrev,
     goToPage,
   } = usePagination({
-    totalItems: products.length,
+    totalItems: displayedProducts.length,
     itemsPerPage: 12,
   })
 
