@@ -1,21 +1,11 @@
-import { useState } from "react"
 import { FiDollarSign } from "react-icons/fi"
-import { useProducts } from "../../hooks/useProducts"
-import useFilterProducts from "../../hooks/useFilterProducts"
 
-export default function PriceFilter() {
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 })
-  const [tempRange, setTempRange] = useState({ min: 0, max: 1000 })
-
-  const handleApply = () => {
-    setPriceRange(tempRange)
-  }
-
-  const handleReset = () => {
-    setTempRange({ min: 0, max: 1000 })
-    setPriceRange({ min: 0, max: 1000 })
-  }
-
+export default function PriceFilter({
+  handleApply,
+  handleResetPrice,
+  setTempRange,
+  tempRange,
+}) {
   return (
     <div className="bg-white lg:bg-transparent rounded-xl lg:rounded-none border-b border-gray-100 pb-6">
       {/* Header */}
@@ -99,7 +89,7 @@ export default function PriceFilter() {
         {/* Action Buttons */}
         <div className="flex gap-2 pt-2">
           <button
-            onClick={handleReset}
+            onClick={handleResetPrice}
             className="flex-1 px-4 py-2 border-2 border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-all font-medium text-sm"
           >
             Reset

@@ -2,30 +2,144 @@ import CategorySection from "./CategorySection"
 import PriceFilter from "./PriceFilter"
 import { AiOutlineClose } from "react-icons/ai"
 import { MdOutlineRefresh } from "react-icons/md"
+import { useBrand } from "../../hooks/useBrand"
 
-export default function SideBar({ isOpen, onClose }) {
+export default function SideBar({
+  isOpen,
+  onClose,
+  handleFilter,
+  filterValue,
+  handleApply,
+  handleResetPrice,
+  handleResetAll,
+  setTempRange,
+  tempRange,
+}) {
+  // const productCategories = [
+  //   { id: 6, name: "Beverages" },
+  //   { id: 7, name: "Biscuits & Snacks" },
+  //   { id: 8, name: "Breads & Bakery" },
+  //   { id: 9, name: "Breakfast & Dairy" },
+  //   { id: 10, name: "Frozen Foods" },
+  //   { id: 11, name: "Fruits & Vegetables" },
+  //   { id: 12, name: "Grocery & Staples" },
+  //   { id: 13, name: "Household Needs" },
+  //   { id: 14, name: "Meats & Seafood" },
+  // ];
   const productCategories = [
-    { id: 1, name: "Beverages" },
-    { id: 2, name: "Biscuits & Snacks" },
-    { id: 3, name: "Breads & Bakery" },
-    { id: 4, name: "Breakfast & Dairy" },
-    { id: 5, name: "Frozen Foods" },
-    { id: 6, name: "Fruits & Vegetables" },
-    { id: 7, name: "Grocery & Staples" },
-    { id: 8, name: "Household Needs" },
-    { id: 9, name: "Meats & Seafood" },
+    {
+      id: "690f258191cd3ea447416113",
+      name: "Meats & Seafood",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600314/y7cq3fsykptuc2xqpgc5.jpg",
+        publicId: "y7cq3fsykptuc2xqpgc5",
+      },
+    },
+    {
+      id: "690f256891cd3ea447416111",
+      name: "Grocery & Staples",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600289/mfn9iguu5dofsnsaftsv.png",
+        publicId: "mfn9iguu5dofsnsaftsv",
+      },
+    },
+    {
+      id: "690f254e91cd3ea44741610f",
+      name: "Fruits & Vegetables",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600263/iplonoufypiprk0sow0s.png",
+        publicId: "iplonoufypiprk0sow0s",
+      },
+    },
+    {
+      id: "690f252f91cd3ea44741610d",
+      name: "Frozen Foods",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600232/zf1nngcofwfo24fsb2lm.png",
+        publicId: "zf1nngcofwfo24fsb2lm",
+      },
+    },
+    {
+      id: "690f251391cd3ea44741610b",
+      name: "Breakfast & Dairy",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600203/xi8jobumap8zjge4nqpe.png",
+        publicId: "xi8jobumap8zjge4nqpe",
+      },
+    },
+    {
+      id: "690f24ed91cd3ea447416109",
+      name: "Breads & Bakery",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600166/wimjv68e7whn45sllyzy.jpg",
+        publicId: "wimjv68e7whn45sllyzy",
+      },
+    },
+    {
+      id: "690f24ab91cd3ea447416106",
+      name: "Beverages",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600100/vvwydxc6oqovmmv0xlf7.png",
+        publicId: "vvwydxc6oqovmmv0xlf7",
+      },
+    },
+    {
+      id: "690f247791cd3ea447416104",
+      name: "Biscuits & Snacks",
+      Image: {
+        url: "https://res.cloudinary.com/do4ofiz1v/image/upload/v1762600048/hivylc03ic0z8lwejfez.png",
+        publicId: "hivylc03ic0z8lwejfez",
+      },
+    },
   ]
 
-  const brandCategories = [
-    { id: 1, name: "Frito Lay", count: 8 },
-    { id: 2, name: "Quaker", count: 36 },
-    { id: 3, name: "Cola", count: 1 },
-    { id: 4, name: "Welch's", count: 1 },
-    { id: 5, name: "Oreo", count: 16 },
-  ]
+  // const { allBrand } = useBrand();
+  // const { data } = allBrand;
+  // const brandCategories = data?.brands || []; //question here
+  // console.log(data);
+  // const brandCategories = [
+  //   {
+  //     id: "6914937e9427b320c82367e7",
+  //     // id: "68eac36b67a885482f42180b",
+  //     name: "Frito Lay",
+  //     createdAt: "2025-11-12T14:02:38.997Z",
+  //     updatedAt: "2025-11-12T14:02:38.997Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     // id: "691493739427b320c82367e3",
+  //     id: "68eac36b67a885482f42180b",
+  //     name: "Welchs",
+  //     createdAt: "2025-11-12T14:02:27.497Z",
+  //     updatedAt: "2025-11-12T14:02:27.497Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     id: "691493659427b320c82367d9",
+  //     name: "Quaker",
+  //     createdAt: "2025-11-12T14:02:13.748Z",
+  //     updatedAt: "2025-11-12T14:02:13.748Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     id: "6914930265a44e1f6c80100a",
+  //     name: "Cola",
+  //     createdAt: "2025-11-12T14:00:34.538Z",
+  //     updatedAt: "2025-11-12T14:00:34.538Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     id: "68eb904d12f98c99f63ca7fc",
+  //     name: "Orea",
+  //     createdAt: "2025-10-12T11:26:05.584Z",
+  //     updatedAt: "2025-10-12T11:26:05.584Z",
+  //     __v: 0,
+  //   },
+  // ];
 
+  const allCategories = [...productCategories]
   const availabilityOptions = [
-    { id: 1, name: "In stock", count: 62 },
+    { id: 1, name: "In stock", count: 32 },
     { id: 2, name: "Out of stock", count: 0 },
   ]
 
@@ -68,7 +182,10 @@ export default function SideBar({ isOpen, onClose }) {
           {/* Reset Filters Button */}
           <div className="hidden lg:flex items-center justify-between pb-4 border-b border-gray-100">
             <h3 className="text-lg font-bold text-gray-900">Filters</h3>
-            <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium">
+            <button
+              onClick={() => handleResetAll()}
+              className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+            >
               <MdOutlineRefresh className="text-lg" />
               Reset
             </button>
@@ -78,17 +195,24 @@ export default function SideBar({ isOpen, onClose }) {
           <div className="space-y-8 lg:space-y-6">
             <CategorySection
               heading="Product Categories"
-              items={productCategories}
+              items={allCategories}
               type="category"
+              handleFilter={handleFilter}
+              filterValue={filterValue}
             />
 
-            <CategorySection
+            {/* <CategorySection
               heading="Brands"
               items={brandCategories}
               type="brand"
-            />
+            /> */}
 
-            <PriceFilter />
+            <PriceFilter
+              handleApply={handleApply}
+              handleResetPrice={handleResetPrice}
+              setTempRange={setTempRange}
+              tempRange={tempRange}
+            />
 
             <CategorySection
               heading="Availability"

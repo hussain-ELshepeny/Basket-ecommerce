@@ -8,7 +8,7 @@ export async function getData(url, accessTokenRef) {
   // if (res.status === 500) {
   //   console.warn("Problems in server");
   // }
-  if (res.status === 500) {
+  if (res.status === 401) {
     const r = await fetch(
       "https://e-commarce-website-eight.vercel.app/api/v1/auth/refresh",
       {
@@ -20,11 +20,11 @@ export async function getData(url, accessTokenRef) {
       await login();
     }
     const result = await r.json();
-    const newAccessToken = result.AccessToken;
+    const newAccessToken = result.AccessToken || result.accessToken;
 
     localStorage.setItem("accessToken", newAccessToken);
     res = await fetch(url, {
-      headers: { Authorization: `Bearer ${newAccessToken}` },
+      headers: { Authorization: `Bearer ${accessTokenRef}` },
       credentials: "include",
     });
   }
