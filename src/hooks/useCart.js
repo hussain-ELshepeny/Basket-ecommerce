@@ -14,33 +14,31 @@ export function useCart() {
     "https://e-commarce-website-eight.vercel.app/api/v1/cart/add-cart"
 
   const DELETE_PRODUCT_FROM_CART =
-    "https://e-commarce-website-eight.vercel.app/api/v1/cart/remove/68ffd47eff7d8218b1d94fa1"
+    "https://e-commarce-website-eight.vercel.app/api/v1/cart/remove"
 
   const CLEAR_CART =
     "https://e-commarce-website-eight.vercel.app/api/v1/cart/clear-Cart"
 
   const accessToken = localStorage.getItem("accessToken")
 
-  // const allCartProducts = useQuery({
-  //   queryKey: ["cart-products"],
-  //   queryFn: () => getData(GET_ALL_CART_PRODUCTS, { value: accessToken }),
-  //   staleTime: 1000 * 60 * 5,
-  // })
-
   const getCart = useQuery({
     queryKey: ["cart"],
-    queryFn: () => getData(GET_CART, { value: accessToken }),
+    queryFn: () => getData(GET_CART, accessToken),
     staleTime: 1000 * 60 * 5,
   })
 
   const addToCart = useMutation({
-    mutationFn: (data) =>
-      postData(
+    mutationFn: function (data) {
+      const currentCart = JSON.parse(localStorage.getItem("cart")) || []
+      const updatedCart = [...currentCart, data.productId]
+      localStorage.setItem("cart", JSON.stringify(updatedCart))
+      return postData(
         ADD_PRODUCTS_TO_CART,
-        { value: localStorage.getItem("accessToken") },
+        // { value: localStorage.getItem("accessToken") },
+        accessToken,
         data
-      ),
-
+      )
+    },
     onSuccess: () => {
       console.log("✅ Product added successfully!")
       queryClient.invalidateQueries({ queryKey: ["cart"] })
@@ -51,11 +49,13 @@ export function useCart() {
   })
 
   const removeFromCart = useMutation({
-    mutationFn: (productId) =>
-      deleteData(
-        `${DELETE_PRODUCT_FROM_CART}/${productId}`,
-        localStorage.getItem("accessToken")
-      ),
+    mutationFn: function (itemId) {
+      const currentCart = JSON.parse(localStorage.getItem("cart")) || []
+      const updatedCart = currentCart.filter((cartId) => cartId !== itemId)
+      localStorage.setItem("cart", JSON.stringify(updatedCart))
+      return deleteData(`${DELETE_PRODUCT_FROM_CART}/${itemId}`, accessToken)
+    },
+
     onSuccess: () => {
       console.log("🗑️ Product removed successfully!")
       queryClient.invalidateQueries(["cart"])

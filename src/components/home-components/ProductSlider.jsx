@@ -6,9 +6,13 @@ import "swiper/css/navigation"
 import { useProducts } from "../../hooks/useProducts"
 
 export default function ProductsSlider() {
+  const { products } = useProducts()
   return (
     <div className="relative w-full overflow-hidden">
       <Swiper
+        onSwiper={(swiper) => {
+          swiper.wrapperEl.style.height = "490px"
+        }}
         modules={[Navigation]}
         spaceBetween={1}
         // slidesPerView={5}
@@ -34,11 +38,12 @@ export default function ProductsSlider() {
             slidesPerView: 5,
           },
         }}
-        className="products-swiper"
+        // className="products-swiper"
+        // className="[&_.swiper-wrapper]:h-[490px]"
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-          <SwiperSlide key={item}>
-            <SliderProductCard color={"yellow"} />
+        {products?.slice(15, 23).map((product, index) => (
+          <SwiperSlide key={index}>
+            <SliderProductCard product={product} color={"yellow"} />
           </SwiperSlide>
         ))}
       </Swiper>

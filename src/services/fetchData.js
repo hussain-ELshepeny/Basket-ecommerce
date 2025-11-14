@@ -1,13 +1,11 @@
-import { login } from "/src/services/login";
+import { login } from "/src/services/login"
 
 export async function getData(url, accessTokenRef) {
   let res = await fetch(url, {
     headers: { Authorization: `Bearer ${accessTokenRef}` },
     credentials: "include",
-  });
-  // if (res.status === 500) {
-  //   console.warn("Problems in server");
-  // }
+  })
+
   if (res.status === 401) {
     const r = await fetch(
       "https://e-commarce-website-eight.vercel.app/api/v1/auth/refresh",
@@ -15,21 +13,21 @@ export async function getData(url, accessTokenRef) {
         method: "POST",
         credentials: "include",
       }
-    );
+    )
     if (!r.ok) {
-      await login();
+      await login()
     }
-    const result = await r.json();
-    const newAccessToken = result.AccessToken || result.accessToken;
+    const result = await r.json()
+    const newAccessToken = result.AccessToken || result.accessToken
 
-    localStorage.setItem("accessToken", newAccessToken);
+    localStorage.setItem("accessToken", newAccessToken)
     res = await fetch(url, {
       headers: { Authorization: `Bearer ${accessTokenRef}` },
       credentials: "include",
-    });
+    })
   }
-  const data = await res.json();
-  return data;
+  const data = await res.json()
+  return data
 }
 
 export async function postData(url, accessTokenRef, bodyData) {
@@ -42,10 +40,10 @@ export async function postData(url, accessTokenRef, bodyData) {
     },
     body: JSON.stringify(bodyData),
     credentials: "include",
-  });
+  })
 
   if (res.status === 500) {
-    console.warn("Problems in server");
+    console.warn("Problems in server")
   }
 
   if (res.status === 401) {
@@ -55,14 +53,14 @@ export async function postData(url, accessTokenRef, bodyData) {
         method: "POST",
         credentials: "include",
       }
-    );
+    )
 
     if (!r.ok) {
-      await login();
+      await login()
     }
-    const { AccessToken: newAccessToken } = await r.json();
+    const { AccessToken: newAccessToken } = await r.json()
 
-    localStorage.setItem("accessToken", newAccessToken);
+    localStorage.setItem("accessToken", newAccessToken)
     res = await fetch(url, {
       method: "POST",
       headers: {
@@ -71,10 +69,10 @@ export async function postData(url, accessTokenRef, bodyData) {
       },
       body: JSON.stringify(bodyData),
       credentials: "include",
-    });
+    })
   }
-  const data = await res.json();
-  return data;
+  const data = await res.json()
+  return data
 }
 
 export async function deleteData(url, accessTokenRef) {
@@ -85,10 +83,10 @@ export async function deleteData(url, accessTokenRef) {
       Authorization: `Bearer ${accessTokenRef}`,
     },
     credentials: "include",
-  });
+  })
 
   if (res.status === 500) {
-    console.warn("Problems in server");
+    console.warn("Problems in server")
   }
 
   if (res.status === 401) {
@@ -98,15 +96,15 @@ export async function deleteData(url, accessTokenRef) {
         method: "POST",
         credentials: "include",
       }
-    );
+    )
 
     if (!r.ok) {
-      await login();
+      await login()
     }
 
-    const { AccessToken: newAccessToken } = await r.json();
+    const { AccessToken: newAccessToken } = await r.json()
 
-    localStorage.setItem("accessToken", newAccessToken);
+    localStorage.setItem("accessToken", newAccessToken)
 
     res = await fetch(url, {
       method: "DELETE",
@@ -114,9 +112,9 @@ export async function deleteData(url, accessTokenRef) {
         Authorization: `Bearer ${newAccessToken}`,
       },
       credentials: "include",
-    });
+    })
   }
 
-  const data = await res.json();
-  return data;
+  const data = await res.json()
+  return data
 }

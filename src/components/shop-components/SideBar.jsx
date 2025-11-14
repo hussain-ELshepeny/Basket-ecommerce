@@ -3,6 +3,7 @@ import PriceFilter from "./PriceFilter"
 import { AiOutlineClose } from "react-icons/ai"
 import { MdOutlineRefresh } from "react-icons/md"
 import { useBrand } from "../../hooks/useBrand"
+import { useCategory } from "../../hooks/useCategory"
 
 export default function SideBar({
   isOpen,
@@ -15,17 +16,12 @@ export default function SideBar({
   setTempRange,
   tempRange,
 }) {
-  // const productCategories = [
-  //   { id: 6, name: "Beverages" },
-  //   { id: 7, name: "Biscuits & Snacks" },
-  //   { id: 8, name: "Breads & Bakery" },
-  //   { id: 9, name: "Breakfast & Dairy" },
-  //   { id: 10, name: "Frozen Foods" },
-  //   { id: 11, name: "Fruits & Vegetables" },
-  //   { id: 12, name: "Grocery & Staples" },
-  //   { id: 13, name: "Household Needs" },
-  //   { id: 14, name: "Meats & Seafood" },
-  // ];
+  const { allCategory, filterCategories } = useCategory()
+  const { data: categoryData } = allCategory
+  const categoriesBeforeFilter = categoryData?.categories
+  const categories = filterCategories(categoriesBeforeFilter)
+  const finalCategories = [...categories]
+  console.log(finalCategories)
   const productCategories = [
     {
       id: "690f258191cd3ea447416113",
@@ -93,51 +89,7 @@ export default function SideBar({
     },
   ]
 
-  // const { allBrand } = useBrand();
-  // const { data } = allBrand;
-  // const brandCategories = data?.brands || []; //question here
-  // console.log(data);
-  // const brandCategories = [
-  //   {
-  //     id: "6914937e9427b320c82367e7",
-  //     // id: "68eac36b67a885482f42180b",
-  //     name: "Frito Lay",
-  //     createdAt: "2025-11-12T14:02:38.997Z",
-  //     updatedAt: "2025-11-12T14:02:38.997Z",
-  //     __v: 0,
-  //   },
-  //   {
-  //     // id: "691493739427b320c82367e3",
-  //     id: "68eac36b67a885482f42180b",
-  //     name: "Welchs",
-  //     createdAt: "2025-11-12T14:02:27.497Z",
-  //     updatedAt: "2025-11-12T14:02:27.497Z",
-  //     __v: 0,
-  //   },
-  //   {
-  //     id: "691493659427b320c82367d9",
-  //     name: "Quaker",
-  //     createdAt: "2025-11-12T14:02:13.748Z",
-  //     updatedAt: "2025-11-12T14:02:13.748Z",
-  //     __v: 0,
-  //   },
-  //   {
-  //     id: "6914930265a44e1f6c80100a",
-  //     name: "Cola",
-  //     createdAt: "2025-11-12T14:00:34.538Z",
-  //     updatedAt: "2025-11-12T14:00:34.538Z",
-  //     __v: 0,
-  //   },
-  //   {
-  //     id: "68eb904d12f98c99f63ca7fc",
-  //     name: "Orea",
-  //     createdAt: "2025-10-12T11:26:05.584Z",
-  //     updatedAt: "2025-10-12T11:26:05.584Z",
-  //     __v: 0,
-  //   },
-  // ];
-
-  const allCategories = [...productCategories]
+  const allCategories = [...finalCategories]
   const availabilityOptions = [
     { id: 1, name: "In stock", count: 32 },
     { id: 2, name: "Out of stock", count: 0 },

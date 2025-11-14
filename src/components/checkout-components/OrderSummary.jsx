@@ -1,12 +1,12 @@
-export default function OrderSummary({ cart, subtotal, shipping, total, tax }) {
+export default function OrderSummary({ count, total }) {
   return (
     <div className="space-y-4 w-full ">
       {/* Subtotal / Shipping */}
       <div className="space-y-2 text-sm font-roboto leading-[21px] text-gray-700">
         <div className="flex justify-between">
           {/* <span>Subtotal · {cart.length} items</span> */}
-          <span>Subtotal · 3 items</span>
-          <span>$14.79</span>
+          <span>Subtotal · {count} items</span>
+          <span>${total}</span>
         </div>
 
         <div className="flex justify-between">
@@ -25,15 +25,13 @@ export default function OrderSummary({ cart, subtotal, shipping, total, tax }) {
           <div className="text-right">
             <span className="text-xs text-gray-400 mr-1">USD</span>
             <span className="font-roboto font-bold text-[19px] leading-[28.5px]">
-              $14.79
+              ${total}
             </span>
           </div>
         </div>
 
-        <p className="text-xs text-gray-500 mt-1">
-          Including  $2.46  in taxes
-        </p>
+        <p className="text-xs text-gray-500 mt-1">Including $2.46 in taxes</p>
       </div>
     </div>
-  );
+  )
 }

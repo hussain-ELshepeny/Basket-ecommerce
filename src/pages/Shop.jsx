@@ -7,7 +7,6 @@ import PaginationControls from "../components/shared/PaginationControl"
 import { BsGrid3X3Gap } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 import { useProducts } from "../hooks/useProducts"
-import { useCategory } from "../hooks/useCategory"
 import useFilterProducts from "../hooks/useFilterProducts"
 
 export default function Shop() {
@@ -16,15 +15,10 @@ export default function Shop() {
   const [sortBy, setSortBy] = useState("default")
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false)
 
-  const { allProducts } = useProducts()
-  const { data: productsData, isPending } = allProducts
-  const products = productsData?.products || [] //question here
-  console.log(productsData)
-
-  // const { allCategory } = useCategory();
-  // const { data: categories } = allCategory;
-  // const categories = productsData?.products || []; //question here
-  // console.log(categories);
+  const { products, isPending } = useProducts()
+  // const { data: productsData, isPending } = allProducts
+  // const products = productsData?.products || [] //question here
+  // console.log(productsData)
 
   const {
     displayedProducts,
