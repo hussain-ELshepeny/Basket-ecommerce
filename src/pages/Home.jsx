@@ -1,11 +1,11 @@
-import Offers from "../components/home-components/Offers";
-import BannerBox from "../components/home-components/BannerBox";
-import BestSellers from "../components/home-components/BestSellers";
-import Category from "../components/home-components/Category";
-import Discount from "../components/home-components/discount";
+import Offers from "../components/home-components/Offers"
+import BannerBox from "../components/home-components/BannerBox"
+import BestSellers from "../components/home-components/BestSellers"
+import Category from "../components/home-components/Category"
+import Discount from "../components/home-components/discount"
 
-import Deals from "../components/home-components/Deals";
-import CategoryCollections from "../components/home-components/CategoryCollections";
+import Deals from "../components/home-components/Deals"
+import CategoryCollections from "../components/home-components/CategoryCollections"
 
 export default function Home() {
   return (
@@ -24,12 +24,12 @@ export default function Home() {
       <Category
         headingText={"Breakfast & Dairy"}
         spanText={"Do not miss the current offers until the end of month."}
-        imageUrl={"/images/breakfast-and-dairy.png"}
-        secHead={"Breakfast and Dairy"}
-        categoryId={"690f251391cd3ea44741610b"}
+        imageUrl={"/images/beverages.png"}
+        secHead={"Beverages and Juices"}
+        categoryId={"690f24ab91cd3ea447416106"}
       />
       <Deals />
       <CategoryCollections />
     </main>
-  );
+  )
 }

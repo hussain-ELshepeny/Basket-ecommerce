@@ -1,10 +1,9 @@
-import heroImage from "/images/about-header.jpg.png";
-import founderImage from "/images/about-people.jpg.png";
+import heroImage from "/images/about-header.jpg.png"
+import founderImage from "/images/about-people.jpg.png"
 
 const AboutUs = () => {
   return (
     <div className="font-body">
-      {/* 1. Hero/Title Section */}
       <section
         className="relative h-96 bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -123,7 +122,7 @@ const AboutUs = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

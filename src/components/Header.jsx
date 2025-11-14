@@ -1,16 +1,21 @@
-import { IoIosMenu } from "react-icons/io";
-import { FaAngleDown } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { IoIosMenu } from "react-icons/io"
+import { FaAngleDown } from "react-icons/fa"
+import { Link, NavLink } from "react-router-dom"
 import {
   AiOutlineClose,
   AiOutlineSearch,
   AiOutlineUser,
   AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { useHeaderActions } from "../hooks/header-actions";
+} from "react-icons/ai"
+import { HiOutlineMenuAlt3 } from "react-icons/hi"
+import { useHeaderActions } from "../hooks/header-actions"
+import { useCart } from "../hooks/useCart"
 
 export default function Header() {
+  const { getCart } = useCart()
+  const { data: cartData } = getCart
+  const cart = cartData?.cart || []
+
   const {
     menuOpen,
     setMenuOpen,
@@ -18,17 +23,22 @@ export default function Header() {
     setCategoriesOpen,
     searchFocused,
     setSearchFocused,
-  } = useHeaderActions();
+  } = useHeaderActions()
 
   const navItems = [
-    { name: "Home", path: "/", icon: "/images/home.png" },
-    { name: "Shop", path: "/shop", icon: "/images/shop.jpg" },
-    { name: "Meats & Seafood", path: "/meats", icon: "/images/meat.png" },
-    { name: "Bakery", path: "/bakery", icon: "/images/baker.png" },
-    { name: "Beverages", path: "/beverages", icon: "/images/cup.png" },
-    { name: "Blog", path: "/blog", icon: "/images/blog.webp" },
-    { name: "Contact", path: "/contact", icon: "/images/contact.png" },
-  ];
+    { name: "Home", path: "/", icon: "/images/home.png", isNavLink: true },
+    { name: "Shop", path: "/shop", icon: "/images/shop.jpg", isNavLink: true },
+    { name: "Meats & Seafood", icon: "/images/meat.png", isNavLink: false },
+    { name: "Bakery", icon: "/images/baker.png", isNavLink: false },
+    { name: "Beverages", icon: "/images/cup.png", isNavLink: false },
+    { name: "Blog", path: "/blog", icon: "/images/blog.webp", isNavLink: true },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: "/images/contact.png",
+      isNavlink: true,
+    },
+  ]
 
   return (
     <header className="bg-white sticky top-0 z-30 shadow-md">
@@ -96,11 +106,11 @@ export default function Header() {
               <div className="relative">
                 <AiOutlineShoppingCart className="text-2xl sm:text-3xl text-gray-700 group-hover:text-primary transition-colors" />
                 <span className="absolute -top-2 -right-2 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold shadow-lg">
-                  0
+                  {cart?.count}
                 </span>
               </div>
               <span className="hidden md:block font-semibold text-gray-700 group-hover:text-primary transition-colors">
-                $0.00
+                ${cart.totalPrice ? cart.totalPrice : "0.00"}
               </span>
             </NavLink>
           </div>
@@ -178,21 +188,33 @@ export default function Header() {
               <ul className="flex items-center justify-end gap-1 xl:gap-2">
                 {navItems.map((item, index) => (
                   <li key={index}>
-                    <NavLink
-                      to={item.path}
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 xl:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm xl:text-base ${
-                          isActive
-                            ? "bg-primary/10 text-primary shadow-sm scale-105"
-                            : "text-gray-600 hover:bg-primary/5 hover:text-primary hover:scale-105"
-                        }`
-                      }
-                    >
-                      {item.icon && (
-                        <img src={item.icon} alt="" className="w-5 h-5" />
-                      )}
-                      {item.name}
-                    </NavLink>
+                    {item.isNavLink ? (
+                      <NavLink
+                        to={item.path}
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 xl:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm xl:text-base ${
+                            isActive
+                              ? "bg-primary/10 text-primary shadow-sm scale-105"
+                              : "text-gray-600 hover:bg-primary/5 hover:text-primary hover:scale-105"
+                          }`
+                        }
+                      >
+                        {item.icon && (
+                          <img src={item.icon} alt="" className="w-5 h-5" />
+                        )}
+                        {item.name}
+                      </NavLink>
+                    ) : (
+                      <Link
+                        // to={item.path}
+                        className={`flex items-center gap-2 px-3 xl:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm xl:text-base ${"text-gray-600 hover:bg-primary/5 hover:text-primary hover:scale-105"}`}
+                      >
+                        {item.icon && (
+                          <img src={item.icon} alt="" className="w-5 h-5" />
+                        )}
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -259,5 +281,5 @@ export default function Header() {
         </>
       )}
     </header>
-  );
+  )
 }

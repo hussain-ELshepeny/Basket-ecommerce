@@ -1,9 +1,8 @@
-import { MdOutlineArrowRightAlt } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { MdOutlineArrowRightAlt } from "react-icons/md"
+import { Link } from "react-router-dom"
 
 export default function Offers() {
   return (
-    //-------------Start offer section--------------------
     <section className="offer section-container py-10 grid grid-cols-1 sm:grid-cols-4 gap-5">
       <div className="bg-[url(/images/offer1.png)] bg-center bg-no-repeat bg-cover sm:col-span-3 h-auto relative">
         <div className="absolute top-0 left-0 w-full h-full bg-black/5 z-0"></div>
@@ -80,6 +79,5 @@ export default function Offers() {
         </div>
       </div>
     </section>
-    //-------------End offer section--------------------
-  );
+  )
 }
