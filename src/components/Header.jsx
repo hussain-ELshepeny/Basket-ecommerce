@@ -36,7 +36,7 @@ export default function Header() {
       name: "Contact",
       path: "/contact",
       icon: "/images/contact.png",
-      isNavlink: true,
+      isNavLink: true,
     },
   ]
 
@@ -106,11 +106,11 @@ export default function Header() {
               <div className="relative">
                 <AiOutlineShoppingCart className="text-2xl sm:text-3xl text-gray-700 group-hover:text-primary transition-colors" />
                 <span className="absolute -top-2 -right-2 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold shadow-lg">
-                  {cart?.count}
+                  {cart.count ? cart.count : "0"}
                 </span>
               </div>
               <span className="hidden md:block font-semibold text-gray-700 group-hover:text-primary transition-colors">
-                ${cart.totalPrice ? cart.totalPrice : "0.00"}
+                ${cart.totalPrice ? cart.totalPrice.toFixed(2) : "0.00"}
               </span>
             </NavLink>
           </div>
