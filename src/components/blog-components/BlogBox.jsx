@@ -2,7 +2,7 @@ export default function BlogBox({ imageUrl, title }) {
   return (
     <div className="mb-10">
       <div>
-        <img src={`${imageUrl}`} alt="" />
+        <img src={`${imageUrl}`} alt="" loading="lazy" />
       </div>
       <p className="uppercase text-subHeading py-4">Grocery</p>
       <h1 className="text-2xl sm:text-4xl font-semibold">{title}</h1>

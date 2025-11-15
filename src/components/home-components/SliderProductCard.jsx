@@ -10,7 +10,8 @@ export default function SliderProductCard({ color, product }) {
       className="px-2.5 pt-2.5 pb-5 sm:px-5 sm:pt-5 sm:pb-9 border h-full  border-[#EDEEF5] "
     >
       <div className="flex flex-col gap-10px justify-between h-full">
-        <img src={product?.Image?.url} alt="product" />
+        {/* why lazy */}
+        <img src={product?.Image?.url} alt="product" loading="lazy" />
         <p className="text-standard font-subHeading font-medium leading-[1.4] mb-[5px] md:mb-2">
           {product?.Name}
         </p>

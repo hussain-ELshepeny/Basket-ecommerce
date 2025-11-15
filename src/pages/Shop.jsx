@@ -16,9 +16,6 @@ export default function Shop() {
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false)
 
   const { products, isPending } = useProducts()
-  // const { data: productsData, isPending } = allProducts
-  // const products = productsData?.products || [] //question here
-  // console.log(productsData)
 
   const {
     displayedProducts,

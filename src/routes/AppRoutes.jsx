@@ -1,12 +1,14 @@
+import { lazy } from "react"
 import { Route, Routes } from "react-router-dom"
-import Home from "../pages/Home"
-import AboutUs from "../pages/AboutUs"
-import Contact from "../pages/Contact"
-import Shop from "../pages/Shop"
-import Blog from "../pages/Blog"
-import Layout from "../layout/Layout"
-import Checkout from "../pages/Checkout"
-import Login from "../pages/Login"
+
+const Home = lazy(() => import("../pages/Home"))
+const AboutUs = lazy(() => import("../pages/AboutUs"))
+const Contact = lazy(() => import("../pages/Contact"))
+const Shop = lazy(() => import("../pages/Shop"))
+const Blog = lazy(() => import("../pages/Blog"))
+const Checkout = lazy(() => import("../pages/Checkout"))
+const Login = lazy(() => import("../pages/Login"))
+const Layout = lazy(() => import("../layout/Layout"))
 
 export default function AppRoutes() {
   return (
